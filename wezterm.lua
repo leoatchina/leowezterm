@@ -1,4 +1,24 @@
 local wezterm = require 'wezterm';
+
+local function get_file_name(path)
+    local start, finish = path:find('[%w%s!-={-|]+[_%.].+')
+    pcall(function()
+        return path:sub(start,#path)
+    end)
+end
+
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local lbl
+  for shlindex = 1, #custom_shells do
+    if tab.active_pane.title:match(custom_shells[shlindex].args[1], 1, true) then
+      lbl = custom_shells[shlindex].label
+      break
+    end
+  end
+  return string.format(" %-15s ", lbl or get_file_name(tab.active_pane.title) or tab.active_pane.title);
+end)
+
 return {
     default_prog = {"powershell"},
     font = wezterm.font("JetBrains Mono Regular"),
