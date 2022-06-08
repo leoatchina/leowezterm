@@ -35,5 +35,7 @@ return {
         {key="8", mods="CTRL", action=wezterm.action{ActivateTab=7}},
         {key="9", mods="CTRL", action=wezterm.action{ActivateTab=8}},
         {key="0", mods="CTRL", action=wezterm.action{ActivateTab=-1}},
+        {key="PageUp",   mods="CTRL", action=wezterm.action{ActivateTabRelative=-1}},
+        {key="PageDown", mods="CTRL", action=wezterm.action{ActivateTabRelative=1}},
     }
 }
